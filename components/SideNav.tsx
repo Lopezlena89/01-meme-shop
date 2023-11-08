@@ -1,34 +1,101 @@
-import Link from 'next/link';
-import NavLinks from './NavLinks';
+'use client'
+
+import Image from "next/image"
+import Link from "next/link"
+
+import {AiOutlineHome} from 'react-icons/ai';
+import {BsFillArrowLeftCircleFill} from 'react-icons/bs';
+import {AiOutlineWoman} from 'react-icons/ai';
+import {RiMenLine} from 'react-icons/ri';
+import {IoFootballOutline} from 'react-icons/io5';
+import {MdOutlineFiberNew} from 'react-icons/md';
+import {PiSignOutDuotone} from 'react-icons/pi';
+import {BiSearch} from 'react-icons/bi';
+import { useState } from "react";
 
 
 
-export default function SideNav() {
+const sidebarItems = [
+    {
+        name:'Home',
+        href:'/user/hombres',
+        icon:<AiOutlineHome/>
+    },
+    {
+        name:'Hombres',
+        href:'/user/hombres',
+        icon:<RiMenLine/>
+    },
+    {
+        name:'Mujeres',
+        href:'/user/mujeres',
+        icon:<AiOutlineWoman/>
+    },
+    {
+        name:'Niños',
+        href:'/user/ninos',
+        icon:<IoFootballOutline/>
+    },
+    {
+        name:'Nuevos',
+        href:'/user/nuevos',
+        icon:<MdOutlineFiberNew/>
+    },
+    {
+        name:'Buscar',
+        href:'',
+        icon:<BiSearch/>
+    },
+    {
+        name:'SignOut',
+        href:'/',
+        icon:<PiSignOutDuotone/>
+    },
+   
+]
+
+const SideNav = () => {
+    const [isCollapseSidebar,setIsCollapseSidebar] = useState<boolean>(false);
+
+    const toogleSidebarCollapseHandler = ( ) =>{
+       
+        setIsCollapseSidebar(((prev)=>!prev)) 
+    } 
+
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
-      <Link
-        className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
-        href="/"
-      >
-        <div className="w-32 text-white md:w-40">
-         
-        </div>
-      </Link>
-      <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <NavLinks />
-        <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
-        <form
-          action={async () => {
-            'use server';
-            // await signOut();
-          }}
-        >
-          <button className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-           
-            <div className="hidden md:block">Sign Out</div>
-          </button>
-        </form>
-      </div>
+    <div className="sidebar__wrapper h-screen" style={{borderRight:'1px solid gray'}}>
+        <button className="btn" onClick={toogleSidebarCollapseHandler} >
+            <BsFillArrowLeftCircleFill/>
+        </button>
+        <aside className="sidebar " data-collapse={isCollapseSidebar}>
+            <div className="sidebar__top">
+                <Image 
+                    src='/logo_01.jpeg' 
+                    alt='la vida es un meme'
+                    width={80}
+                    height={80}
+                    className='sidebar__logo'
+                />
+                <p className="sidebar__logo-name">La vida es un meme</p>
+            </div>
+            <ul className="sidebar__list">
+                {
+                    sidebarItems.map(({name, href,icon}) =>(
+                        <li className="sidebar_item" key={name}>
+                            <Link href={href} className='sidebar__link'>
+                                <span className="sidebar__icon">
+                                {icon}
+                                </span>
+                                <span className="sidebar__name">{name}</span>
+                            </Link>
+                        </li>
+                    ) )
+                }
+            </ul>
+        </aside>
     </div>
-  );
+  )
 }
+
+
+export default SideNav;

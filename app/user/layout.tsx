@@ -1,3 +1,4 @@
+
 import SideNav from "@/components/SideNav";
 import { Metadata } from "next";
 
@@ -13,7 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SideNav />
       </div>
       {/* <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div> */}
-      <div className=" flex flex-wrap p-4 w-screen md:overflow-auto">{children}</div>
+      <div className=" flex  p-4 w-full md:overflow-auto">
+        {children}
+      </div>
     </div>
   );
 }

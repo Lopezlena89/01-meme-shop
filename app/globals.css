@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Lusitana&display=swap'); */
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -16,12 +18,170 @@
   }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+body{
+  background-color: white;
+  font-family: 'Roboto', sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar__wrapper{
+  position: absolute;
+}
+
+
+
+.sidebar{
+  width: 17rem;
+  height: 100%;
+  background-color: white;
+  padding: 1rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.sidebar__top{
+  width: max-content;
+  display:flex;
+  align-items: center;
+  gap:1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid  rgb(208, 208, 208);
+}
+
+.sidebar__logo{
+  width: 3.4rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.sidebar___list{
+  list-style: none;
+}
+
+.sidebar__link{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  text-decoration: none;
+  color:#000;
+  padding: 0.8rem 1rem;
+  display: flex;
+  background-color:#FFDFDF;
+  margin-bottom: 1rem;
+  border-radius:0.8rem;
+}
+.sidebar__link:hover{
+  background-color: #FFF6F6;
+}
+.sidebar__icon{
+  font-size: 1.8rem;
+ 
+  display:inline-block;
+}
+
+.sidebar__name{
+  margin-left: 0.5rem;
+  font-size: 1rem;
+
+}
+.sidebar__logo-name{
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Cedarville Cursive', cursive;
+}
+.title_shirts{
+  font-family: 'Cedarville Cursive', cursive;
+}
+
+.btn{
+  position: absolute;
+  right: 0;
+  top:4.7rem;
+  background-color: white;
+  width: 1.4rem;
+  height: 1.5rem;
+  border:1px solid #e5e7eb;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  transform: translateX(50%);
+  font-size:1.1rem;
+}
+
+[data-collapse = 'true']{
+  width: 5.3rem;
+}
+[data-collapse = 'true'] .sidebar__name,
+[data-collapse = 'true'] .sidebar__logo-name{
+  display:none;
+}   
+/* Logo Principal */
+.logo_principal{
+  width: 100%;
+  height: 300px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  margin:5%;
+}
+
+/* Caja con playeras */
+
+.generalBox{
+  width: 100%;
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.box-tshirts{
+    width: 250px;
+    height: 275px;
+    margin: 10px;
+    border:1px solid rgb(208, 208, 208);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0px 0px 8px #AEDEFC;
+}
+
+
+.shirt_01,.shirt_02,.shirt_03{
+  width: 100vw;
+  height: 250px;
+  border-radius: 15px;
+
+}
+
+.under_box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  z-index: 99;
+  bottom: 0;
+  background-color: #AEDEFC;
+  border:1px solid #AEDEFC;
+  border-radius: 15px;
+}
+.hombres{
+  background-color: #AEDEFC;
+  border:1px solid #AEDEFC;
+}
+
+.mujeres{
+  background-color: #F875AA;
+  border:1px solid #F875AA;
+}
