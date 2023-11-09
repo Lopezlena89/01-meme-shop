@@ -15,9 +15,6 @@ import {HiOutlineLightBulb} from 'react-icons/hi';
 import {BiSearch} from 'react-icons/bi';
 import {useTheme} from "next-themes";
 
-
-
-
 const sidebarItems = [
     {
         name:'Home',
@@ -54,17 +51,16 @@ const sidebarItems = [
 ]
 
 const SideNav = () => {
-    const [isCollapseSidebar,setIsCollapseSidebar] = useState<boolean>(false);
-    const { theme, setTheme } = useTheme()
-
-    const toogleSidebarCollapseHandler = ( ) =>{
-       
+    const [isCollapseSidebar,setIsCollapseSidebar] = useState(false);
+    const toogleSidebarCollapseHandler = () =>{
         setIsCollapseSidebar(((prev)=>!prev)) 
     } 
-
+    const { theme, setTheme } = useTheme()
+   
+    
   return (
-    <div className="sidebar__wrapper h-screen" style={{borderRight:'1px solid gray'}}>
-        <button className="btn bg-primary-200  dark:bg-primary-300'" onClick={toogleSidebarCollapseHandler} >
+    <div className="sidebar__wrapper h-screen " style={{borderRight:'1px solid gray'}}>
+        <button className={`btn bg-primary-200  dark:bg-primary-300`} onClick={toogleSidebarCollapseHandler} >
             <BsFillArrowLeftCircleFill/>
         </button>
         <aside className="sidebar dark:bg-background " data-collapse={isCollapseSidebar}>
@@ -103,19 +99,17 @@ const SideNav = () => {
                         </Link>
                     </li>
                 </ul>
-                <div className="box_theme ">
+                <div className="box_theme">
+
                     {
-                        (theme === 'light')
-                        ?
-                            <button onClick={() => setTheme('dark')}>
-                                <MdDarkMode className="w-8 h-8 text-primary-100"/>
+                        theme === 'light'
+                         ?  <button onClick={() => setTheme('dark')} style={{fontSize:'30px', color:'#F875AA'}}>
+                               <MdDarkMode/>
                             </button>
-                        :
-                            <button onClick={() => setTheme('light')}>
-                                <HiOutlineLightBulb className="w-8 h-8 text-primary-300"/>
+                         :  <button onClick={() => setTheme('light')} style={{fontSize:'30px', color:'#9BBEC8'}}>
+                                <HiOutlineLightBulb/>
                             </button>
                     }
-                        
                         
                 </div>
             </div>
