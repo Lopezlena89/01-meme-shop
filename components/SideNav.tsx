@@ -1,8 +1,8 @@
 'use client'
 
+import { useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
-
 import {AiOutlineHome} from 'react-icons/ai';
 import {BsFillArrowLeftCircleFill} from 'react-icons/bs';
 import {AiOutlineWoman} from 'react-icons/ai';
@@ -10,8 +10,11 @@ import {RiMenLine} from 'react-icons/ri';
 import {IoFootballOutline} from 'react-icons/io5';
 import {MdOutlineFiberNew} from 'react-icons/md';
 import {PiSignOutDuotone} from 'react-icons/pi';
+import {MdDarkMode} from 'react-icons/md';
+import {HiOutlineLightBulb} from 'react-icons/hi';
 import {BiSearch} from 'react-icons/bi';
-import { useState } from "react";
+import {useTheme} from "next-themes";
+
 
 
 
@@ -46,16 +49,13 @@ const sidebarItems = [
         href:'',
         icon:<BiSearch/>
     },
-    {
-        name:'SignOut',
-        href:'/',
-        icon:<PiSignOutDuotone/>
-    },
+    
    
 ]
 
 const SideNav = () => {
     const [isCollapseSidebar,setIsCollapseSidebar] = useState<boolean>(false);
+    const { theme, setTheme } = useTheme()
 
     const toogleSidebarCollapseHandler = ( ) =>{
        
@@ -64,10 +64,10 @@ const SideNav = () => {
 
   return (
     <div className="sidebar__wrapper h-screen" style={{borderRight:'1px solid gray'}}>
-        <button className="btn" onClick={toogleSidebarCollapseHandler} >
+        <button className="btn bg-primary-200  dark:bg-primary-300'" onClick={toogleSidebarCollapseHandler} >
             <BsFillArrowLeftCircleFill/>
         </button>
-        <aside className="sidebar " data-collapse={isCollapseSidebar}>
+        <aside className="sidebar dark:bg-background " data-collapse={isCollapseSidebar}>
             <div className="sidebar__top">
                 <Image 
                     src='/logo_01.jpeg' 
@@ -76,22 +76,49 @@ const SideNav = () => {
                     height={80}
                     className='sidebar__logo'
                 />
-                <p className="sidebar__logo-name">La vida es un meme</p>
+                <p className="sidebar__logo-name ">La vida es un meme</p>
             </div>
-            <ul className="sidebar__list">
+            <ul className="sidebar__list dark:bg-background">
                 {
                     sidebarItems.map(({name, href,icon}) =>(
-                        <li className="sidebar_item" key={name}>
-                            <Link href={href} className='sidebar__link'>
-                                <span className="sidebar__icon">
+                        <li className='sidebar_item' key={name}>
+                            <Link href={href} className={`${name}  sidebar__link bg-primary-200  dark:bg-primary-300`}>
+                                <span className='sidebar__icon dark:text-background'>
                                 {icon}
                                 </span>
-                                <span className="sidebar__name">{name}</span>
+                                <span className="sidebar__name dark:text-background">{name}</span>
                             </Link>
                         </li>
                     ) )
                 }
             </ul>
+            <div className="last_box">
+                <ul className="sidebar__list w-25 dark:bg-background">
+                    <li className='sidebar_item'>
+                        <Link href={'/'} className={`sidebar__link bg-primary-200  dark:bg-primary-300`}>
+                            <span className='sidebar__icon dark:text-background'>
+                                <PiSignOutDuotone/>
+                            </span>
+                            <span className="sidebar__name dark:text-background">{'SignOut'}</span>
+                        </Link>
+                    </li>
+                </ul>
+                <div className="box_theme ">
+                    {
+                        (theme === 'light')
+                        ?
+                            <button onClick={() => setTheme('dark')}>
+                                <MdDarkMode className="w-8 h-8 text-primary-100"/>
+                            </button>
+                        :
+                            <button onClick={() => setTheme('light')}>
+                                <HiOutlineLightBulb className="w-8 h-8 text-primary-300"/>
+                            </button>
+                    }
+                        
+                        
+                </div>
+            </div>
         </aside>
     </div>
   )

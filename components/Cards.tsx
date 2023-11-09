@@ -7,11 +7,11 @@ import {BsCart} from 'react-icons/bs'
 
 interface Props{
   list:tShirts,
-  color:string
+ 
   
 }
 
-const Cards:FC<Props>= ({list,color}) =>{
+const Cards:FC<Props>= ({list}) =>{
 
   return (
     <> 
@@ -23,11 +23,11 @@ const Cards:FC<Props>= ({list,color}) =>{
             src={list.img}
             alt={list.title}
           />
-          <div className={`under_box ${color}`}>
-            <span>{list.price}</span>
-            <Button color="primary" variant="solid">
+          <div className='under_box'>
+            <span className='dark:text-background'>{list.price}</span>
+            <Button className='text-foreground bg-primary-200  dark:bg-primary-200  dark:text-foreground'  variant="solid">
               <BsCart/>
-              <span>Comprar</span>
+              <span >Comprar</span>
             </Button>
           </div>
       </div>
