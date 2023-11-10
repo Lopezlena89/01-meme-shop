@@ -7,8 +7,6 @@ import {BsCart} from 'react-icons/bs'
 
 interface Props{
   list:tShirts,
- 
-  
 }
 
 const Cards:FC<Props>= ({list}) =>{
@@ -25,7 +23,8 @@ const Cards:FC<Props>= ({list}) =>{
           />
           <div className='under_box'>
             <span className='dark:text-background'>{list.price}</span>
-            <Button className='text-foreground bg-primary-200  dark:bg-primary-200  dark:text-foreground'  variant="solid">
+            <Button className='text-foreground bg-primary-200  dark:bg-primary-200 
+                               dark:text-foreground'  variant="solid">
               <BsCart/>
               <span >Comprar</span>
             </Button>
