@@ -42,22 +42,22 @@ const NavBar = () => {
 
             <NavbarContent className="hidden sm:flex  gap-3" justify="center">
                 <NavbarItem>
-                    <Link color="foreground" underline="hover" href="/user/men">
+                    <Link color="foreground" underline="hover" href="/collections/men">
                         Men
                     </Link>
                 </NavbarItem>
                 <NavbarItem >
-                    <Link color='foreground' underline="hover" href="/user/women" >
+                    <Link color='foreground' underline="hover" href="/collections/women" >
                         Women
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link color="foreground" underline="hover" href="/user/kids">
+                    <Link color="foreground" underline="hover" href="/collections/kids">
                         Kids
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link color="foreground" underline="hover" href="/user/new">
+                    <Link color="foreground" underline="hover" href="/collections/new">
                         New
                     </Link>
                 </NavbarItem>
