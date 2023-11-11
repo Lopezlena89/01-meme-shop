@@ -4,27 +4,56 @@ import { useState } from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, 
         Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, Image, Badge, Avatar} from "@nextui-org/react";
 import { CartIcon } from "./CartIcon";
+import { items } from "@/interfaces/menuItems";
 
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isInvisible, setIsInvisible] = useState(false);
 
-    const menuItems = [
-        "Profile",
-        "Dashboard",
-        "Activity",
-        "Analytics",
-        "System",
-        "Deployments",
-        "My Settings",
-        "Team Settings",
-        "Help & Feedback",
-        "Log Out",
+    const menuItems:items[] = [
+        {
+            element:"Men",
+            href:'/collections/men'
+        },
+        {
+            element:"Women",
+            href:'/collections/women'
+        },
+        {
+            element:"Kids",
+            href:'/collections/kids'
+        },
+        {
+            element:"New",
+            href:'/collections/new'
+        },
+        {
+            element:"Profile",
+            href:'/profile'
+        },
+        {
+            element:"Cart",
+            href:'/cart'
+        },
+        {
+            element:"Contact",
+            href:'/contact'
+        },
+        {
+            element:"Instagram",
+            href:'#'
+        },
+        {
+            element:"Log Out",
+            href:'/auth/login'
+        },
+        
+        
     ];
   return (
     <>
-        <Navbar onMenuOpenChange={setIsMenuOpen}>
+        <Navbar className="bg-gray-800 text-white" onMenuOpenChange={setIsMenuOpen}>
             <NavbarContent >
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -35,6 +64,7 @@ const NavBar = () => {
                         width={50}
                         alt="La vida es un meme"
                         src="/logo_01.jpeg"
+                        style={{borderRadius:'100%'}}
                     />
                 
                 </NavbarBrand>
@@ -42,22 +72,22 @@ const NavBar = () => {
 
             <NavbarContent className="hidden sm:flex  gap-3" justify="center">
                 <NavbarItem>
-                    <Link color="foreground" underline="hover" href="/collections/men">
+                    <Link className="text-white" underline="hover" href="/collections/men">
                         Men
                     </Link>
                 </NavbarItem>
                 <NavbarItem >
-                    <Link color='foreground' underline="hover" href="/collections/women" >
+                    <Link className="text-white" underline="hover" href="/collections/women" >
                         Women
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link color="foreground" underline="hover" href="/collections/kids">
+                    <Link className="text-white" underline="hover" href="/collections/kids">
                         Kids
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link color="foreground" underline="hover" href="/collections/new">
+                    <Link className="text-white" underline="hover" href="/collections/new">
                         New
                     </Link>
                 </NavbarItem>
@@ -72,7 +102,7 @@ const NavBar = () => {
                 </NavbarItem>
                 <NavbarItem className="hidden sm:flex">
                     <Link href="#">
-                        <Badge  color="primary">
+                        <Badge content="0" className="text-white"  color="primary">
                             <Avatar
                                 radius="md"
                                 size="sm"
@@ -81,28 +111,28 @@ const NavBar = () => {
                         </Badge>
                     </Link>
                 </NavbarItem>
-                <NavbarItem className="hidden sm:flex">
-                    <Link href="#">Login</Link>
+                <NavbarItem className="hidden sm:flex ">
+                    <Link className="text-white" href="#">Login</Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Button as={Link} color="primary" href="#" variant="flat">
-                    Sign Up
+                    <Button as={Link} className='text-white' href="#" variant="flat">
+                        Sign Up
                     </Button>
                 </NavbarItem>
           
             </NavbarContent>
             <NavbarMenu >
                 {menuItems.map((item, index) => (
-                    <NavbarMenuItem key={`${item}-${index}`}>
+                    <NavbarMenuItem key={`${item.element}-${index}`}>
                     <Link
                         color={
                         index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
                         }
                         className="w-full"
-                        href="#"
+                        href={item.href}
                         size="lg"
                     >
-                        {item}
+                        {item.element}
                     </Link>
                     </NavbarMenuItem>
                 ))}
