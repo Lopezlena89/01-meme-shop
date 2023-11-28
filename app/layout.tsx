@@ -25,7 +25,7 @@ export default function RootLayout({
           sizes='32x32'
         />
       </head>
-			<body  className="bg-background text-foreground dark:text-foreground dark:bg-background">
+			<body  className="bg-background text-foreground dark:text-foreground dark:bg-background ">
         <Providers >
 							{children}				
         </Providers>

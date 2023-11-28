@@ -60,12 +60,14 @@ const NavBar = () => {
                     className="sm:hidden"
                 />
                 <NavbarBrand>
-                    <Image  
-                        width={50}
-                        alt="La vida es un meme"
-                        src="/logo_01.jpeg"
-                        style={{borderRadius:'100%'}}
-                    />
+                    <Link href="/">
+                        <Image  
+                            width={50}
+                            alt="La vida es un meme"
+                            src="/logo_01.jpeg"
+                            style={{borderRadius:'100%'}}
+                        />
+                    </Link>
                 
                 </NavbarBrand>
             </NavbarContent>
@@ -94,14 +96,14 @@ const NavBar = () => {
             </NavbarContent>
             <NavbarContent justify="end">
                 <NavbarItem className="hidden sm:flex">
-                    <Link href="#"> 
+                    <Link href="/cart"> 
                     <Badge color="danger" content={10} isInvisible={isInvisible} shape="rectangle">
                         <CartIcon size={25} height={10} width={10} />
                     </Badge>
                     </Link>
                 </NavbarItem>
                 <NavbarItem className="hidden sm:flex">
-                    <Link href="#">
+                    <Link href="/profile">
                         <Badge content="0" className="text-white"  color="primary">
                             <Avatar
                                 radius="md"
@@ -112,10 +114,10 @@ const NavBar = () => {
                     </Link>
                 </NavbarItem>
                 <NavbarItem className="hidden sm:flex ">
-                    <Link className="text-white" href="#">Login</Link>
+                    <Link className="text-white" href="/auth/login">Login</Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Button as={Link} className='text-white' href="#" variant="flat">
+                    <Button as={Link} className='text-white' href="/auth/register" variant="flat">
                         Sign Up
                     </Button>
                 </NavbarItem>
