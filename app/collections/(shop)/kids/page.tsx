@@ -3,7 +3,6 @@
 import { NextPage } from 'next';
 import Cards from '@/components/Cards';
 import { listKids } from '@/database/tShirtsDB';
-import { Divider } from '@nextui-org/react';
 
 
 

@@ -1,6 +1,6 @@
 
 import NavBar from "@/components/NavBar";
-import {Accordion, AccordionItem, Button, Card, CardFooter, CardHeader, Divider, Input, Link } from "@nextui-org/react";
+import {Button, Card, CardFooter, CardHeader, Divider, Input, Link } from "@nextui-org/react";
 import Image from "next/image";
 
 export default function Homepage() {
