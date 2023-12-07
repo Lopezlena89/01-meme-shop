@@ -1,15 +1,17 @@
 'use client'
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, 
         Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, Image, Badge, Avatar} from "@nextui-org/react";
 import { CartIcon } from "./CartIcon";
 import { items } from "@/interfaces/menuItems";
+import { AuthContext } from "@/context/auth";
 
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isInvisible, setIsInvisible] = useState(false);
+    const {logOut,isLogged} = useContext(AuthContext);
 
     const menuItems:items[] = [
         {
@@ -113,14 +115,19 @@ const NavBar = () => {
                         </Badge>
                     </Link>
                 </NavbarItem>
-                <NavbarItem className="hidden sm:flex ">
-                    <Link className="text-white" href="/auth/login">Login</Link>
-                </NavbarItem>
-                <NavbarItem>
-                    <Button as={Link} className='text-white' href="/auth/register" variant="flat">
-                        Sign Up
-                    </Button>
-                </NavbarItem>
+                {
+                    isLogged
+                    ? 
+                    <NavbarItem>
+                        <Link onClick={logOut} className='text-white' href="/auth/register">
+                            Logout
+                        </Link>
+                    </NavbarItem>
+                    :
+                    <NavbarItem className="hidden sm:flex ">
+                        <Link className="text-white" href="/auth/login">Login</Link>
+                    </NavbarItem>
+                }
           
             </NavbarContent>
             <NavbarMenu >

@@ -1,9 +1,8 @@
+import { NextResponse } from "next/server";
 import { db } from "@/database";
 import User from "@/model/User";
-import bcrypt from 'bcryptjs'
-
-import { NextResponse } from "next/server";
-
+import bcrypt from 'bcryptjs';
+import { jwt } from '@/utils';
 
 
 export async function POST(request:Request){
@@ -23,8 +22,9 @@ export async function POST(request:Request){
     } 
 
     const {role,name,_id} = user;
-
+    const token = jwt.signToken(_id,email);
     return NextResponse.json({
+        token,
         user:{
         name,email,role
         }

@@ -1,5 +1,5 @@
 'use client'
-import { AuthContext } from "@/context";
+import { AuthContext } from "@/context/auth";
 import { useForm } from "@/hooks/useForm";
 import { Button, Input, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
