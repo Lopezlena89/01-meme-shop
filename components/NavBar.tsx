@@ -48,7 +48,8 @@ const NavBar = () => {
         },
         {
             element:"Log Out",
-            href:'/auth/login'
+            href:'/auth/login',
+           
         },
         
         
@@ -133,16 +134,18 @@ const NavBar = () => {
             <NavbarMenu >
                 {menuItems.map((item, index) => (
                     <NavbarMenuItem key={`${item.element}-${index}`}>
-                    <Link
-                        color={
-                        index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-                        }
-                        className="w-full"
-                        href={item.href}
-                        size="lg"
-                    >
-                        {item.element}
-                    </Link>
+                        <Link
+                            color={
+                            index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+                            }
+                            className="w-full"
+                            href={item.href}
+                            size="lg"
+                            
+                        
+                        >
+                            {item.element}
+                        </Link>
                     </NavbarMenuItem>
                 ))}
             </NavbarMenu>

@@ -1,12 +1,12 @@
 export interface IProduct {
     _id: string;
-    images: string[];
+    img: string;
     inStock: number;
     price: number;
     sizes: ISize[];
     title: string;
     type: 'shirt';
-    gender: 'men'|'women'|'kid'|'unisex'
+    gender: 'men'|'women'|'kid'
 
 }
 
