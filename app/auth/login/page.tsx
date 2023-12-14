@@ -10,14 +10,14 @@ import { useContext } from "react";
 export default function Page(){
 
   const {loginUser} = useContext(AuthContext);
-  const router = useRouter();
+
   const {state,onInputChange,email,password} = useForm();    
 
 
   const handleRegister = async(e: any) =>{
     e.preventDefault();
     loginUser(email,password)
-    router.push('/')
+    
     
   }
 

@@ -11,14 +11,13 @@ import { useContext } from "react";
 export default function Page(){
 
       const {registerUser} = useContext(AuthContext);
-      const router = useRouter();
+      
       const {state,onInputChange,name,email,password} = useForm();    
 
 
       const handleRegister = async(e: any) =>{
         e.preventDefault();
         registerUser(name!,email,password)
-        router.push('/')
         
       }
 

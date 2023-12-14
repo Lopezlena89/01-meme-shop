@@ -1,10 +1,11 @@
 
-import { FC, useEffect, useReducer } from 'react';
+import { FC, useReducer } from 'react';
 import axios from 'axios';
 import { IUser } from '@/interfaces/user';
 import memeApi from '@/api/memeApi';
-import Cookies from 'js-cookie';
 import { AuthContext,authReducer } from '.';
+import { useRouter } from 'next/navigation';
+
 
 export interface AuthState{
     isLogged : Boolean,
@@ -12,6 +13,7 @@ export interface AuthState{
 }
 const AUTH_INITIAL_STATE:AuthState ={
     isLogged : false,
+
     
 }
 interface Props{
@@ -21,6 +23,8 @@ interface Props{
 export const AuthProvider:FC<Props> = ({children}) =>{
 
      const [state, dispatch] = useReducer(authReducer,AUTH_INITIAL_STATE);
+
+     const router = useRouter();
      
 
      const registerUser = async(name:string,email:string,password:string)=> {
@@ -28,8 +32,8 @@ export const AuthProvider:FC<Props> = ({children}) =>{
         try {
           const {data} = await memeApi.post('/user/register',{name,email,password});
           const {user} = data;
-          
           dispatch({type:'[Auth] - Login',payload:user})
+          router.push('/')
           return{
                hasError:false
           }
@@ -49,16 +53,16 @@ export const AuthProvider:FC<Props> = ({children}) =>{
    }
 
    const loginUser = async(email:string,password:string):Promise<boolean>=>{
-
      try {
           const {data} = await memeApi.post('/user/login',{email,password});
           const {user} = data;
-          
+               
           dispatch({type:'[Auth] - Login',payload:user});
+          router.push('/')
           return true
 
-
      } catch (error) {
+          
           return false;
      }
    }

@@ -11,11 +11,9 @@ export interface ProvidersProps {
 export function Providers({ children }: ProvidersProps) {
 	return (
 		<AuthProvider>
-		
 				<NextUIProvider >
 					{children}
 				</NextUIProvider>
-			
 		</AuthProvider>
 	);
 }

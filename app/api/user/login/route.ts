@@ -21,7 +21,7 @@ export async function POST(request:Request){
         return NextResponse.json({message:'El email o password son incorrectos - Password'},{status:400})
     } 
 
-    const {role,name,_id} = user;
+    const {role,name} = user;
     
     return NextResponse.json({
         user:{
