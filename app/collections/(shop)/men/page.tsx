@@ -7,12 +7,10 @@ import { IProduct } from '@/interfaces';
 
 
 const Hombres:NextPage = () => {
-
+  
   const {data,isError,isLoading} = useProducts('/product/getProduct/men')
   if (isError) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
-   
-   
   return (
     <>
       <div className=' h-screen w-full flex justify-center flex-wrap px-10 '>
@@ -21,6 +19,8 @@ const Hombres:NextPage = () => {
             {
               data.products.map((element:IProduct,index:number)=>(
                 <Cards key={index} list={element}/>
+                
+
               ))
             }
           </div>

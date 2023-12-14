@@ -173,7 +173,7 @@ export default function Homepage() {
               <div className="flex flex-col w-full h-[200px] bg-primary  md:hidden">
                 <div className="mt-12 flex flex-col text-center items-center">
                   <span className="text-white font-bold text-4xl">Suscribete a nuestro Newsletter</span>
-                  <Input onClick={logOut} className="w-11/12 text-white " color="danger" type="email" variant='underlined' label="Email" />
+                    <Input onClick={logOut} className="w-11/12 text-white " color="danger" type="email" variant='underlined' label="Email" /> 
                 </div>
                </div>
           </div>

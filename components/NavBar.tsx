@@ -2,7 +2,7 @@
 
 import { useContext, useState } from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, 
-        Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, Image, Badge, Avatar} from "@nextui-org/react";
+        Link, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, Image, Badge, Avatar} from "@nextui-org/react";
 import { CartIcon } from "./CartIcon";
 import { items } from "@/interfaces/menuItems";
 import { AuthContext } from "@/context/auth";
@@ -30,22 +30,22 @@ const NavBar = () => {
             element:"New",
             href:'/collections/new'
         },
-        {
-            element:"Profile",
-            href:'/profile'
-        },
-        {
-            element:"Cart",
-            href:'/cart'
-        },
-        {
-            element:"Contact",
-            href:'/contact'
-        },
-        {
-            element:"Instagram",
-            href:'#'
-        },
+        // {
+        //     element:"Profile",
+        //     href:'/profile'
+        // },
+        // {
+        //     element:"Cart",
+        //     href:'/cart'
+        // },
+        // {
+        //     element:"Contact",
+        //     href:'/contact'
+        // },
+        // {
+        //     element:"Instagram",
+        //     href:'#'
+        // },
         {
             element:"Log Out",
             href:'/auth/login',
@@ -98,13 +98,13 @@ const NavBar = () => {
                 </NavbarItem>
             </NavbarContent>
             <NavbarContent justify="end">
-                <NavbarItem className="hidden sm:flex">
+                {/* <NavbarItem className="hidden sm:flex">
                     <Link href="/cart"> 
                     <Badge color="danger" content={10} isInvisible={isInvisible} shape="rectangle">
                         <CartIcon size={25} height={10} width={10} />
                     </Badge>
                     </Link>
-                </NavbarItem>
+                </NavbarItem> */}
                 <NavbarItem className="hidden sm:flex">
                     <Link href="/profile">
                         <Badge content="0" className="text-white"  color="primary">
