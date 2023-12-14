@@ -21,35 +21,14 @@ interface Props{
 export const AuthProvider:FC<Props> = ({children}) =>{
 
      const [state, dispatch] = useReducer(authReducer,AUTH_INITIAL_STATE);
-
-     useEffect(() => {
-          checkToken()
-     }, [])
-
-     const checkToken = async( ) =>{
-          if(!Cookies.get('token')){
-               return;
-          }
-          try {
-               const {data} = await memeApi.get('/user/validateToken');
-               
-               const {token,user} = data;
-               Cookies.set('token',token);
-               dispatch({type:'[Auth] - Login',payload:user});
-          } catch (error) {
-               console.log(error)
-               Cookies.remove('token');
-          }
-
-     }
      
 
      const registerUser = async(name:string,email:string,password:string)=> {
           
         try {
           const {data} = await memeApi.post('/user/register',{name,email,password});
-          const {user,token} = data;
-          Cookies.set('token',token);
+          const {user} = data;
+          
           dispatch({type:'[Auth] - Login',payload:user})
           return{
                hasError:false
@@ -73,8 +52,8 @@ export const AuthProvider:FC<Props> = ({children}) =>{
 
      try {
           const {data} = await memeApi.post('/user/login',{email,password});
-          const {token,user} = data;
-          Cookies.set('token',token);
+          const {user} = data;
+          
           dispatch({type:'[Auth] - Login',payload:user});
           return true
 
@@ -85,7 +64,6 @@ export const AuthProvider:FC<Props> = ({children}) =>{
    }
 
    const logOut = async() =>{
-          Cookies.remove('token');
           dispatch({type:'[Auth] - Logout'})
    }
 

@@ -1,13 +1,26 @@
 'use client'
+
 import { useState } from "react"
 
-export const useForm = (initialState = {}) =>{
+interface Prop{
+    name?:string,
+    email:string,
+    password:string,
+    state: {
+        email: string;
+        password: string;
+    },
+    onInputChange: (e: any) => void,
+    handleReset: () => void
+}
+
+export const useForm = (initialState = {name:'',email:'',password:''}):Prop =>{
 
     const [state, setState] = useState(initialState);
 
-    const onInputChange = ({target}) =>{
+    const onInputChange = (e:any) =>{
 
-        const {name,value} = target;
+        const {name,value} = e.target;
         setState({
             ...state,
             [name]:value

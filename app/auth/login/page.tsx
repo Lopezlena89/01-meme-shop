@@ -5,11 +5,13 @@ import { Button, Input, Link } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
+
+
 export default function Page(){
 
   const {loginUser} = useContext(AuthContext);
   const router = useRouter();
-  const {state,onInputChange,email,password} = useForm({email:'',password:''});    
+  const {state,onInputChange,email,password} = useForm();    
 
 
   const handleRegister = async(e: any) =>{

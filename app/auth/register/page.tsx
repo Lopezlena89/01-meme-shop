@@ -6,22 +6,18 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
 
-type FormData = {
-  name:       string;
-  email:      string;
-  password:   string;
-}
+
 
 export default function Page(){
 
       const {registerUser} = useContext(AuthContext);
       const router = useRouter();
-      const {state,onInputChange,name,email,password} = useForm({name:'',email:'',password:''});    
+      const {state,onInputChange,name,email,password} = useForm();    
 
 
       const handleRegister = async(e: any) =>{
         e.preventDefault();
-        registerUser(name,email,password)
+        registerUser(name!,email,password)
         router.push('/')
         
       }
