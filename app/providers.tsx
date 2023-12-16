@@ -1,7 +1,7 @@
 "use client";
 
 import { NextUIProvider } from "@nextui-org/system";
-import { AuthProvider } from "@/context/auth";
+
 
 
 export interface ProvidersProps {
@@ -10,11 +10,11 @@ export interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
 	return (
-		<AuthProvider>
-				<NextUIProvider >
-					{children}
-				</NextUIProvider>
-		</AuthProvider>
+	
+		<NextUIProvider >
+			{children}
+		</NextUIProvider>
+	
 	);
 }
 

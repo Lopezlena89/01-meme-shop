@@ -1,13 +1,12 @@
 'use client'
-import NavBar from "@/components/NavBar";
-import { AuthContext } from "@/context/auth";
-import {Button, Card, CardFooter, CardHeader, Divider, Input, Link } from "@nextui-org/react";
 import Image from "next/image";
-import { useContext } from "react";
+import NavBar from "@/components/NavBar";
+import {Button, Card, CardFooter, CardHeader, Divider, Input, Link } from "@nextui-org/react";
+
 
 export default function Homepage() {
 
-    const {logOut} = useContext(AuthContext);
+    
    
     return (
       <>
@@ -173,7 +172,7 @@ export default function Homepage() {
               <div className="flex flex-col w-full h-[200px] bg-primary  md:hidden">
                 <div className="mt-12 flex flex-col text-center items-center">
                   <span className="text-white font-bold text-4xl">Suscribete a nuestro Newsletter</span>
-                    <Input onClick={logOut} className="w-11/12 text-white " color="danger" type="email" variant='underlined' label="Email" /> 
+                    {/* <Input onClick={logOut} className="w-11/12 text-white " color="danger" type="email" variant='underlined' label="Email" />  */}
                 </div>
                </div>
           </div>

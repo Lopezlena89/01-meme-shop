@@ -1,17 +1,29 @@
 'use client'
 
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, 
         Link, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, Image, Badge, Avatar} from "@nextui-org/react";
-import { CartIcon } from "./CartIcon";
+
 import { items } from "@/interfaces/menuItems";
-import { AuthContext } from "@/context/auth";
+import Cookies from "js-cookie";
+
 
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isInvisible, setIsInvisible] = useState(false);
-    const {logOut,isLogged} = useContext(AuthContext);
+    const [isLogged, setIsLogged] = useState(false)
+
+    useEffect(() => {
+      if(Cookies.get('logged')){
+        setIsLogged(true)
+      }
+    }, [])
+
+    const logOut = () =>{
+        setIsLogged(false)
+        Cookies.remove('logged')
+    }
+    
 
     const menuItems:items[] = [
         {
@@ -120,7 +132,7 @@ const NavBar = () => {
                     isLogged
                     ? 
                     <NavbarItem>
-                        <Link onClick={logOut} className='text-white' href="/auth/register">
+                        <Link onClick={()=>logOut()} className='text-white' href="/auth/register">
                             Logout
                         </Link>
                     </NavbarItem>

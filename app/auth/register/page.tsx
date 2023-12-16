@@ -1,41 +1,52 @@
 'use client'
-import { AuthContext } from "@/context/auth";
-import { useForm } from "@/hooks/useForm";
+import { registerUserPrisma } from "@/actions/user/register";
 import { Button, Input, Link } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import Cookies from "js-cookie";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-
-
+type FormInputs = {
+  name: string;
+  email: string;
+  password: string;  
+}
 
 export default function Page(){
-
-      const {registerUser} = useContext(AuthContext);
       
-      const {state,onInputChange,name,email,password} = useForm();    
+
+      const [errorMessage, setErrorMessage] = useState('')
+      const { register, handleSubmit, formState: {errors} } = useForm<FormInputs>();
 
 
-      const handleRegister = async(e: any) =>{
-        e.preventDefault();
-        registerUser(name!,email,password)
-        
+      const onSubmit: SubmitHandler<FormInputs> = async(data) => {
+        setErrorMessage('');
+        const { name, email, password } = data;
+         // Server action
+        const resp = await registerUserPrisma( name, email, password );
+        Cookies.set('logged','true');
+        if ( !resp.ok ) {
+          setErrorMessage( resp.message );
+          return;
+        }
+    
+     
+        window.location.replace('/');
+    
       }
-
   
     return (
       <>
         <div className="container flex flex-row justify-center items-center w-screen h-screen">
-           <form onSubmit={(e)=>handleRegister(e)} className="auth flex flex-col justify-center mb-5"> 
+           <form onSubmit={ handleSubmit( onSubmit ) }   className="auth flex flex-col justify-center mb-5"> 
               <h3 className="text-2xl">Register</h3>
               <Input  
                     className="mt-3" 
-                    type="name" 
+                    type="text" 
                     label="Name"  
                     variant="underlined" 
                     placeholder="Enter your name" 
-                    name='name'
-                    value={name}
-                    onChange={onInputChange}
+                    autoFocus
+                    { ...register('name', { required: true }) }
               />
               <Input  
                     className="mt-3" 
@@ -43,9 +54,7 @@ export default function Page(){
                     label="Email" 
                     variant="underlined" 
                     placeholder="Enter your email" 
-                    name='email'
-                    value={email}
-                    onChange={onInputChange}
+                    { ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }
 
               />
               <Input  
@@ -54,9 +63,7 @@ export default function Page(){
                     label="Password" 
                     variant="underlined" 
                     placeholder="Enter your password" 
-                    name='password'
-                    value={password}
-                    onChange={onInputChange}
+                    { ...register('password', { required: true, minLength: 6 }) }
               />
               <Button type="submit" className="mt-3 bg-primary-100"  >
                 Sign up

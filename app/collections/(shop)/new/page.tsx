@@ -1,13 +1,22 @@
 "use client"
 import { NextPage } from 'next';
 import Cards from '@/components/Cards';
-import { useProducts } from '@/hooks/useProducts';
 import { IProduct } from '@/interfaces';
+import { useEffect, useState } from 'react';
+import { getProductsMen } from '@/actions/product/product-pagination';
 
 const Nuevo:NextPage = () => {
-  const {data,isError,isLoading} = useProducts('/product/getProduct/men')
-  if (isError) return <div>failed to load</div>
-  if (isLoading) return <div>loading...</div>
+  const [state, setState] = useState<any[]>([]);
+
+  const newVariable = async()=>{
+    const data = await getProductsMen();
+    setState(data);
+    
+  }
+  useEffect(() => {
+    newVariable()
+  }, [])
+  
 
   return (
     <>
@@ -15,7 +24,7 @@ const Nuevo:NextPage = () => {
         
         <div className='w-full h-screen flex flex-row justify-center items-center flex-wrap  ' >
           {
-            data.products.map((element:IProduct,index:number)=>(
+            state.map((element:IProduct,index:number)=>(
               <Cards key={index} list={element}/>
             ))
           }

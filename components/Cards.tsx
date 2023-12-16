@@ -1,14 +1,12 @@
 'use client';
 import { FC } from 'react';
 import { Button, Card, CardFooter, Image } from '@nextui-org/react';
-import { IProduct } from '@/interfaces';
 import { useRouter } from 'next/navigation';
+import { Data } from '@/app/collections/(shop)/men/page';
 
-interface Props{
-  list:IProduct,
-}
 
-const Cards:FC<Props>= ({list}) =>{
+
+const Cards:FC<any>= ({list}) =>{
 
   const route = useRouter()
 
@@ -32,9 +30,9 @@ const Cards:FC<Props>= ({list}) =>{
           />
           <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
             <p className="text-bolder text-white/80">{`$${list.price}`}</p>
-            {/* <Button onClick={pushRoute} className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
+            <Button onClick={pushRoute} className="text-tiny text-white bg-black/20" variant="flat" color="default" radius="lg" size="sm">
               Comprar
-            </Button> */}
+            </Button>
           </CardFooter>
         </Card>
       </div>
