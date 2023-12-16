@@ -1,17 +1,14 @@
 'use client';
 import { FC } from 'react';
 import { Button, Card, CardFooter, Image } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
-import { Data } from '@/app/collections/(shop)/men/page';
-
-
+import { useRouter } from 'next/navigation'
 
 const Cards:FC<any>= ({list}) =>{
 
   const route = useRouter()
 
   const pushRoute = () =>{
-    route.push(`../buy/${list.title}`)
+    route.push('/')
   }
   return (
     <> 
